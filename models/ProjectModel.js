@@ -51,26 +51,26 @@ const  ProjectSchema =  new mongoose.Schema(
             required:true,
             default:true
         },
-        time:{
-            dateNow:{
-                type:String,
-                required:false,
-                default:`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
-            },
-            hourNow:{
-                type:String,
-                required:false,
-                default:`${date.getHours()}:${date.getMinutes()}`
-            },
-            yearNow:{
-                required:false,
-                default:`${date.getMonth()}-${date.getFullYear()}`
-            },
-            yearNow:{
-                required:false,
-                default:`${date.getFullYear()}`
-            }
-        }
+        // time:{
+        //     dateNow:{
+        //         type:String,
+        //         required:false,
+        //         default:`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+        //     },
+        //     hourNow:{
+        //         type:String,
+        //         required:false,
+        //         default:`${date.getHours()}:${date.getMinutes()}`
+        //     },
+        //     yearNow:{
+        //         required:false,
+        //         default:`${date.getMonth()}-${date.getFullYear()}`
+        //     },
+        //     yearNow:{
+        //         required:false,
+        //         default:`${date.getFullYear()}`
+        //     }
+        // }
         
     },{timestamps:true}
 )

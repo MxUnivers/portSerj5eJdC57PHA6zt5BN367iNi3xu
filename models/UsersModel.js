@@ -1,8 +1,14 @@
+
 const mongoose = require("mongoose");
 
 
-let date = new Date();
-const UserSchema = new mongoose.Schema(
+var date = new Date();
+let day = date.getDay();
+let month = date.getMonth();
+let year = date.getFullYear();
+let hour = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+const UserSchema =new  mongoose.Schema(
     {
         username: {
             type: String,
@@ -20,10 +26,6 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true
-        },
-        code: {
-            type: String,
-            required: false,
         },
         telephone: {
             type: String,
@@ -56,23 +58,28 @@ const UserSchema = new mongoose.Schema(
             required: false,
             default: false
         },
+        visible:{
+            type:Boolean, 
+            required:false,
+            default:true
+        }
         // dateNow: {
         //     type: String,
         //     required: false,
-        //     default: `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+        //     default: `${day}-${month}-${year}`
         // },
         // hourNow: {
         //     type: String,
         //     required: false,
-        //     default: `${date.getHours()}:${date.getMinutes()}`
+        //     default: `${hour}`
+        // },
+        // monthNow: {
+        //     required: false,
+        //     default: `${day}-${month}`
         // },
         // yearNow: {
         //     required: false,
-        //     default: `${date.getMonth()}-${date.getFullYear()}`
-        // },
-        // yearNow: {
-        //     required: false,
-        //     default: `${date.getFullYear()}`
+        //     default: `${year}`
         // }
     }, { timestamps: true }
 )

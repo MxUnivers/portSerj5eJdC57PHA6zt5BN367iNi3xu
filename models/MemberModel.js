@@ -1,112 +1,110 @@
 
 
-const  mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
-let  date  = new Date();
+let date = new Date();
 
-const  MemberSchema =  new mongoose.Schema(
+const MemberSchema = new mongoose.Schema(
     {
-        idSubject:{
-            idComment:{
-                type:String,
-                required:false,
+        idSubject: {
+            idComment: {
+                type: String,
+                required: false,
             },
-            idProject:{
-                type:String,
-                required:false,
+            idProject: {
+                type: String,
+                required: false,
             },
         },
-        countLike:{
-            countComment:{
-                type:Number,
-                required:false,
-                default:0
+        countLike: {
+            countComment: {
+                type: Number,
+                required: false,
+                default: 0
             },
-            project:{
-                countComment:{
-                    type:Number,
-                    required:false,
-                    default:0
+            project: {
+                countComment: {
+                    type: Number,
+                    required: false,
+                    default: 0
                 }
             }
         },
-        information:{
-            name:{
-                type:String,
-                required:true,
-            },
-            coverPicture:{
-                type:String,
-                required:false
-            },
-            code:{
-                type:String,
-                required:false,
-                default:"225"
-            },
-            telephone:{
-                type:String,
-                required:false,
-                unique:true
-            },
-            email:{
-                type:String,
-                unique:true,
-                required:false
-            },
-            pays:{
-                type:String,
-                required:false
-            },
+        name: {
+            type: String,
+            required: true,
         },
-        authenificate:{
-            access:{
-                type:Boolean,
-                required:false,
-                default:true
+        coverPicture: {
+            type: String,
+            required: false
+        },
+        code: {
+            type: String,
+            required: false,
+            default: "225"
+        },
+        telephone: {
+            type: String,
+            required: false,
+            unique: true
+        },
+        email: {
+            type: String,
+            unique: true,
+            required: false
+        },
+        pays: {
+            type: String,
+            required: false
+        },
+        authenificate: {
+            access: {
+                type: Boolean,
+                required: false,
+                default: true
             },
-            status:{
-                type:String,
-                required:false,
-                default:false
+            status: {
+                type: String,
+                required: false,
+                default: false
             },
-            token:{
-                type:String,
-                default:"",
-                required:false
+            token: {
+                type: String,
+                default: "",
+                required: false
             }
         },
-        password:{
-            type:String,
-            required:false
+        password: {
+            type: String,
+            required: false
         },
-        time:{
-            dateNow:{
-                type:String,
-                required:false,
-                default:`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+        time: {
+            dateNow: {
+                type: String,
+                required: false,
+                default: `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
             },
-            hourNow:{
-                type:String,
-                required:false,
-                default:`${date.getHours()}:${date.getMinutes()}`
+            hourNow: {
+                type: String,
+                required: false,
+                default: `${date.getHours()}:${date.getMinutes()}`
             },
-            yearNow:{
-                required:false,
-                default:`${date.getMonth()}-${date.getFullYear()}`
+            yearNow: {
+                required: false,
+                default: `${date.getMonth()}-${date.getFullYear()}`
             },
-            yearNow:{
-                required:false,
-                default:`${date.getFullYear()}`
+            yearNow: {
+                required: false,
+                default: `${date.getFullYear()}`
             }
         }
     }
     ,
     {
-        timestamps:true
+        timestamps: true
     }
 )
 
-const  Member = mongoose.model("member",MemberSchema);
+const Member = mongoose.model("member", MemberSchema);
 
-module.exports = Member ;
+module.exports = Member;

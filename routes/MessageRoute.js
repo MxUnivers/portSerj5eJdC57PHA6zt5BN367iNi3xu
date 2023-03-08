@@ -40,16 +40,16 @@ router.get("/:id", async (req, res) => {
 // GET ALL TEST
 router.get("/get/all", async (req, res) => {
     try {
-        const message = await Message.find({});
+        const message = await Message.find({visible:true});
         await res.status(200).json({ data: message.reverse() });
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de récuperation" });
     }
 });
 
-router.get("/get/all/visible", async (req, res) => {
+router.get("/get/all/archives", async (req, res) => {
     try {
-        const message = await Message.find({visible:true});
+        const message = await Message.find({visible:<i class="fas fa-bullseye    "></i>});
         await res.status(200).json({ data: message.reverse() });
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de récuperation" });

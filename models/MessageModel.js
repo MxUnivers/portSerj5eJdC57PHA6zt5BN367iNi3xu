@@ -29,26 +29,30 @@ const  MessageSchema =  new mongoose.Schema(
             type:Boolean,
             default:true
         },
-        time:{
-            dateNow:{
-                type:String,
-                required:false,
-                default:`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
-            },
-            hourNow:{
-                type:String,
-                required:false,
-                default:`${date.getHours()}:${date.getMinutes()}`
-            },
-            yearNow:{
-                required:false,
-                default:`${date.getMonth()}-${date.getFullYear()}`
-            },
-            yearNow:{
-                required:false,
-                default:`${date.getFullYear()}`
-            }
+        visible:{
+            type:Boolean,
+            default:true
         }
+        // time:{
+        //     dateNow:{
+        //         type:String,
+        //         required:false,
+        //         default:`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+        //     },
+        //     hourNow:{
+        //         type:String,
+        //         required:false,
+        //         default:`${date.getHours()}:${date.getMinutes()}`
+        //     },
+        //     yearNow:{
+        //         required:false,
+        //         default:`${date.getMonth()}-${date.getFullYear()}`
+        //     },
+        //     yearNow:{
+        //         required:false,
+        //         default:`${date.getFullYear()}`
+        //     }
+        // }
     }
     ,
     {

@@ -1,4 +1,5 @@
 
+const { UserBindingContext } = require("twilio/lib/rest/chat/v2/service/user/userBinding");
 const Project = require("../models/ProjectModel");
 const router = require("express").Router();
 
@@ -14,12 +15,13 @@ router.post("/", async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
-})
+});
 
 // EDIT
 router.put("/:id", async(req, res) => {
     try {
         const project = await Project.findOneAndUpdate({ _id: req.params.id },req.body);
+        await project.save();
         await res.status(200).json({data:project});
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de Modification" });
@@ -64,27 +66,31 @@ router.get("/get/all/hide", async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: "" })
     }
-})
+});
 
 // AVAILAID
-router.get("/hide/:id", async (req, res) => {
+router.put("/hide/:id", async (req, res) => {
     try {
-        const project = await Project.findOne({ visible: false });
-        res.status(200).json({ data: project, message: "Bloqué" });
+        const project = await Project.findByIdAndUpdate({ _id: req.params.id  });
+        project.visible=false;
+        await project.save();
+        res.status(200).json({ message: "Bloqué" });
     } catch (error) {
         res.status(405).json({ message: "Access" })
     }
-})
+});
 
 // VALID
-router.get("/show/:id", async (req, res) => {
+router.put("/show/:id", async (req, res) => {
     try {
-        const project = await Project.findOne({ visible: true }).populate;
-        res.status(200).json({ data: project, message: "Deboqué" });
+        const project = await Project.findByIdAndUpdate({ _id: req.params.id  });
+        project.visible=true;
+        await project.save()
+        res.status(200).json({ message: "Deboqué" });
     } catch (error) {
         res.status(405).json({ message: "Error  " });
     }
-})
+});
 // DELETE 
 router.get("/delete/:id", async (req, res) => {
     try {
@@ -93,7 +99,7 @@ router.get("/delete/:id", async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: "Error  " })
     }
-})
+});
 
 
 module.exports = router;

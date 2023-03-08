@@ -74,12 +74,11 @@ router.get('/get/all/visible', async (req, res) => {
 // availlaide
 router.delete('/hide/:id', async (req, res) => {
     try {
-        const service = await Service.findOneAndDelete({
+        const service = await Service.findById({
             _id: req.params.id,
-            visible: false
         })
         res.status(200).json({ data: service, message: 'Bloqué' })
-        service.visible = false
+        service.visible = false;
         await service.save()
     } catch (error) {
         res.status(405).json({ message: 'Access Bloqué' })
@@ -88,11 +87,10 @@ router.delete('/hide/:id', async (req, res) => {
 // valide
 router.delete('/show/:id', async (req, res) => {
     try {
-        const service = await Service.findOneAndDelete({
-            _id: req.params.id,
-            visible: true
+        const service = await Service.findById({
+            _id: req.params.id
         })
-        service.visible = true
+        service.visible = true;
         await service.save()
         res.status(200).json({ message: 'Deboqué' });
     } catch (error) {
