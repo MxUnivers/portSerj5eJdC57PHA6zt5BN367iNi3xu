@@ -11,15 +11,7 @@ dotenv.config();
 
 const UploadFile = require("./utils/FileUpload");
 
-const  temoignageRoute = require("./routes/TemoinRoute");
-const  memberRoute = require("./routes/MemberRoute");
 const  userRoute = require("./routes/UserRoute");
-const  eventRoute =  require("./routes/activites/EventRoute");
-const  donRoute =  require("./routes/activites/DonsRoute");
-const  schoolRoute =  require("./routes/activites/SchoolRoute");
-const  programRoute =  require("./routes/activites/ProgrammeRoute");
-const  manager_pageRoute =  require("./routes/ManagerPageRoute");
-const  messageroute =  require("./routes/MessageRoute");
 const  authroute =  require("./routes/AuthUserRoute");
 
 // connect Mongoose
@@ -64,18 +56,8 @@ app.get("/", (req, res) => {
   console.log("api vu ...")
 });
 
-
+const apiV1 =`/api/v1/`;   
 // 
-app.use("/api/v1/temoignages", temoignageRoute );
-app.use("/api/v1/members", memberRoute );
-app.use("/api/v1/message", messageroute );
-app.use("/api/v1/users", userRoute );
-app.use("/api/v1" ,authroute);
-app.use("/api/v1/activites/event",  eventRoute );
-app.use("/api/v1/activites/dons",  donRoute );
-app.use("/api/v1/activites/school",  schoolRoute );
-app.use("/api/v1/activites/programmes", programRoute );
-app.use("/api/v1/manager-pages", manager_pageRoute );
 
 app.listen(process.env.PORT, ()=>{
   console.log("serveur demaré "+process.env.PORT);

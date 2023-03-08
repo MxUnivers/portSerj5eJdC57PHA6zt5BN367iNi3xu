@@ -95,6 +95,30 @@ const ManagerPageSchema = new mongoose.Schema(
                 },
             }
         },
+        projet: {
+            coverPicture: {
+                type: String, required: false, default: ""
+            },
+            title: {
+                type: String, required: false, default: ""
+            },
+            description: {
+                type: String, required: false, default: ""
+            }
+        },
+        service: {
+            activite1: {
+                coverpicture: {
+                    type: String, required: false, default: ""
+                }
+            },
+            title: {
+                type: String, required: false, default: ""
+            },
+            description: {
+                type: String, required: false, default: ""
+            }
+        },
         contact: {
             // Video d'introduction
             activite1: {
@@ -140,4 +164,4 @@ const ManagerPageSchema = new mongoose.Schema(
 
 const ManagerPage = mongoose.model("managerpage", ManagerPageSchema);
 
-module.exports = ManagerPage ; 
+module.exports = ManagerPage; 
