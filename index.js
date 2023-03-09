@@ -64,7 +64,7 @@ app.get("/", (req, res) => {
 const apiV1 =`/api/v1`;   
 // 
 app.use(`${apiV1}/users`,userRoute);
-app.use(`${apiV1}/auth/users`,authroute);
+app.use(`${apiV1}/auth`,authroute);
 app.use(`${apiV1}/projects`,projectroute);
 app.use(`${apiV1}/services`,serviceroute);
 app.use(`${apiV1}/messages`,messageroute);

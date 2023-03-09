@@ -49,7 +49,7 @@ router.get("/get/all", async (req, res) => {
 
 router.get("/get/all/archives", async (req, res) => {
     try {
-        const message = await Message.find({visible:<i class="fas fa-bullseye    "></i>});
+        const message = await Message.find({visible:false});
         await res.status(200).json({ data: message.reverse() });
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de récuperation" });

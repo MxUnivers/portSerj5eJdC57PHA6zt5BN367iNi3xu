@@ -6,7 +6,7 @@ const User = require('../models/UsersModel')
 const router = require('express').Router()
 
 // authentification login
-router.post('/auth/login', async (req, res) => {
+router.post('/login', async (req, res) => {
     try {
         const user = await User.findOne({ username: req.body.username })
         var validate = await bcrypt.compare(req.body.password, user.password)
@@ -34,7 +34,7 @@ router.post('/auth/login', async (req, res) => {
     }
 })
 
-router.post('/auth/disconnect/:id', async (req, res) => {
+router.post('/disconnect/:id', async (req, res) => {
     try {
         const user = await User.findOne({ _id: req.params.id })
         user.status = false
