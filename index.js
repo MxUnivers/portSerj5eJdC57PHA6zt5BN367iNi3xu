@@ -56,7 +56,7 @@ app.post("/uploadImage", (req, res) => {
 
 app.get("/", (req, res) => {
   res.send({
-    article:"Api de plénitude en marche",
+    article:"Api Portfolio en marche",
   });
   console.log("api vu ...")
 });
