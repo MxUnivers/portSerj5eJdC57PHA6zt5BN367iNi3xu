@@ -13,7 +13,12 @@ const  MessageSchema =  new mongoose.Schema(
         email:{
             type:String,
             required:false,
-            default:true
+            default:""
+        },
+        telephone:{
+            type:String,
+            required:false,
+            default:""
         },
         subject:{
             type:String,

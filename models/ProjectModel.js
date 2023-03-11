@@ -24,6 +24,11 @@ const  ProjectSchema =  new mongoose.Schema(
             type:String,
             required:false
         },
+        link:{
+            type:String,
+            required:false,
+            default:""
+        },
         media:{
             video:{
                 type:String,
