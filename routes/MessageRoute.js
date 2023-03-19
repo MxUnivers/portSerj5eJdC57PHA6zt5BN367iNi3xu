@@ -59,7 +59,7 @@ router.get("/get/all/archives", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
     try {
         const message = await Message.findOneAndUpdate({_id:req.params.id });
-        message.access = false;
+        message.visible = false;
         await message.save();
         await res.status(200).json({ data: message, message: "Message archivé" });
     } catch (error) {
@@ -70,7 +70,7 @@ router.delete("/delete/:id", async (req, res) => {
 router.delete("/show/:id", async (req, res) => {
     try {
         const message = await Message.findOneAndUpdate({ _id: req.params.id },req.body);
-        message.access = true;
+        message.visible = true;
         await message.save();
         res.status(200).json({ data: message, message: "Message non archivé" });
     } catch (error) {
