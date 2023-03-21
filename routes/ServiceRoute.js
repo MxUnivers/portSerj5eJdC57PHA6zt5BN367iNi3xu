@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 // GET ALL  TEST
 router.get('/get/all', async (req, res) => {
     try {
-        const service = await Service.find({})
+        const service = await Service.find({visible:true})
         await res.status(200).json({ data: service.reverse() })
     } catch (error) {
         res.status(405).json({ message: 'Erreur lors de récuperation' })
