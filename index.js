@@ -62,7 +62,8 @@ app.get("/", (req, res) => {
   console.log("api vu ...")
 });
 
-const apiV1 =`/api/v1`;   
+const apiV1 =`/api/v1`;
+
 // 
 app.use(`${apiV1}/users`,userRoute);
 app.use(`${apiV1}/auth`,authroute);

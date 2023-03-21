@@ -1,6 +1,4 @@
 
-const { UserBindingContext } = require("twilio/lib/rest/chat/v2/service/user/userBinding");
-const { TrunkPage } = require("twilio/lib/rest/routes/v2/trunk");
 const Project = require("../models/ProjectModel");
 const router = require("express").Router();
 

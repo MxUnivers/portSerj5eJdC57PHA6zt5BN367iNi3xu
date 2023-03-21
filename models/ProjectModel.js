@@ -27,7 +27,7 @@ const  ProjectSchema =  new mongoose.Schema(
         link:{
             type:String,
             required:false,
-            default:""
+            default:"#"
         },
         media:{
             video:{
