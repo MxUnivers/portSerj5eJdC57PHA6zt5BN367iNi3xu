@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
-})
+});
 
 // EDIT
 router.put("/:id", async(req, res) => {
@@ -48,7 +48,7 @@ router.get("/delete/:id", async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: "Error  " })
     }
-})
+});
 
 
 module.exports = router;

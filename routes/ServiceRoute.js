@@ -1,5 +1,5 @@
-const Service = require('../models/ServiceModel')
-const router = require('express').Router()
+const Service = require('../models/ServiceModel');
+const router = require('express').Router();
 
 // Create
 router.post('/', async (req, res) => {
@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
-})
+});
 
 // Edit
 router.put('/:id', async (req, res) => {
@@ -22,7 +22,7 @@ router.put('/:id', async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: error })
     }
-})
+});
 
 // GET SCHOOL ID
 router.get('/:id', async (req, res) => {
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: 'Erreur lors de Modification' })
     }
-})
+});
 
 // GET ALL  TEST
 router.get('/get/all', async (req, res) => {
@@ -44,12 +44,12 @@ router.get('/get/all', async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: 'Erreur lors de récuperation' })
     }
-})
+});
 
 //GET ALL VISIBLE
-router.get('/get/all/visible', async (req, res) => {
+router.get('/get/all/archives', async (req, res) => {
     try {
-        const service = await Service.find({ visible: true })
+        const service = await Service.find({ visible: false })
         await res
             .status(200)
             .json({ data: service.reverse(), message: 'get all visible' });
@@ -58,16 +58,6 @@ router.get('/get/all/visible', async (req, res) => {
     }
 });
 //ARICHIVE 
-router.get('/get/all/visible', async (req, res) => {
-    try {
-        const service = await Service.find({ visible: false })
-        await res
-            .status(200)
-            .json({ data: service.reverse(), message: 'get all visible' })
-    } catch (error) {
-        res.status(405).json({ message: 'Erreur lors de récuperation' })
-    }
-});
 
 
 
@@ -83,7 +73,7 @@ router.delete('/hide/:id', async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: 'Access Bloqué' })
     }
-})
+});
 // valide
 router.delete('/show/:id', async (req, res) => {
     try {
@@ -98,4 +88,4 @@ router.delete('/show/:id', async (req, res) => {
     }
 });
 
-module.exports = router
+module.exports = router;

@@ -47,9 +47,9 @@ router.get("/get/all", async (req, res) => {
     }
 });
 
-router.get("/get/all/visible", async (req, res) => {
+router.get("/get/all/archives", async (req, res) => {
     try {
-        const comment = await Comment.find({visible:true});
+        const comment = await Comment.find({visible:false});
         await res.status(200).json({ data: comment.reverse() });
     } catch (error) {
         res.status(405).json({ comment: "Erreur lors de récuperation" });

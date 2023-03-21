@@ -69,7 +69,7 @@ router.get("/get/all", async (req, res) => {
 
 
 // AVAILAID
-router.put("/hide/:id", async (req, res) => {
+router.delete("/hide/:id", async (req, res) => {
     try {
         const user = await User.findById({_id:req.params.id},req.body);
         user.visible =  false
@@ -81,7 +81,7 @@ router.put("/hide/:id", async (req, res) => {
 })
 
 // VALID
-router.put("/show/:id", async (req, res) => {
+router.delete("/show/:id", async (req, res) => {
     try {
         const user = await User.findById({_id:req.params.id },req.body);
         user.visible =  true;
@@ -90,9 +90,9 @@ router.put("/show/:id", async (req, res) => {
     } catch (error) {
         res.status(405).json({ message: "Error  " });
     }
-})
+});
 // DELETE 
-router.get("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
     try {
         const user = await User.findByIdAndDelete({ _id: req.params.id });
         res.status(200).json({ data: user, message: "Deboqué" });

@@ -1,5 +1,6 @@
 
 const { UserBindingContext } = require("twilio/lib/rest/chat/v2/service/user/userBinding");
+const { TrunkPage } = require("twilio/lib/rest/routes/v2/trunk");
 const Project = require("../models/ProjectModel");
 const router = require("express").Router();
 
@@ -41,7 +42,7 @@ router.get("/:id", async (req, res) => {
 // GET ALL TEST
 router.get("/get/all", async (req, res) => {
     try {
-        const project = await Project.find({});
+        const project = await Project.find({visible:true});
         await res.status(200).json({ data: project.reverse() });
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de récuperation" });
@@ -49,29 +50,20 @@ router.get("/get/all", async (req, res) => {
 });
 
 //GET ALL VISIBLE
-router.get("/get/all/visible", async (req, res) => {
+router.get("/get/all/archives", async (req, res) => {
     try {
-        const project = await Project.find({ visible: true });
+        const project = await Project.find({ visible: false });
         await res.status(200).json({ data: project.reverse(), message: "get all visible" });
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de récuperation" });
     }
 });
 
-// ACCESS
-router.get("/get/all/hide", async (req, res) => {
-    try {
-        const project = await Project.find({visible:false});
-        res.status(200).json({ data: project.reverse(), message: "get all Article hide" });
-    } catch (error) {
-        res.status(405).json({ message: "" })
-    }
-});
 
 // AVAILAID
-router.put("/hide/:id", async (req, res) => {
+router.delete("/hide/:id", async (req, res) => {
     try {
-        const project = await Project.findByIdAndUpdate({ _id: req.params.id  });
+        const project = await Project.findByIdAndUpdate({ _id: req.params.id});
         project.visible=false;
         await project.save();
         res.status(200).json({ message: "Bloqué" });
@@ -81,7 +73,7 @@ router.put("/hide/:id", async (req, res) => {
 });
 
 // VALID
-router.put("/show/:id", async (req, res) => {
+router.delete("/show/:id", async (req, res) => {
     try {
         const project = await Project.findByIdAndUpdate({ _id: req.params.id  });
         project.visible=true;

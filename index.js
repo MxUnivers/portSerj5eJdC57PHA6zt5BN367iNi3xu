@@ -18,6 +18,7 @@ const  serviceroute =  require("./routes/ServiceRoute");
 const  messageroute =  require("./routes/MessageRoute");
 const  commentroute =  require("./routes/CommentRoute");
 const  managerpageroute =  require("./routes/ManagerPageRoute");
+const  visitorroute =  require("./routes/VisitorRoute");
 
 // connect Mongoose
 const LanchMogoDb = require("./utils/ConnectMongoDb");
@@ -70,6 +71,8 @@ app.use(`${apiV1}/services`,serviceroute);
 app.use(`${apiV1}/messages`,messageroute);
 app.use(`${apiV1}/comments`,commentroute);
 app.use(`${apiV1}/parameter_page`,managerpageroute);
+// nombre de visite
+app.use(`${apiV1}`,visitorroute);
 
 app.listen(process.env.PORT, ()=>{
   console.log("serveur demaré "+process.env.PORT);
