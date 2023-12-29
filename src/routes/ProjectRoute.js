@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
 });
 
 // EDIT
-router.put("/:id", async(req, res) => {
+router.put("/edit/:id", async(req, res) => {
     try {
         const project = await Project.findOneAndUpdate({ _id: req.params.id },req.body);
         await project.save();
@@ -28,9 +28,18 @@ router.put("/:id", async(req, res) => {
 });
 
 // GET SCHOOL ID
-router.get("/:id", async (req, res) => {
+router.get("/project/:id", async (req, res) => {
     try {
         const project = await Project.findOne({ _id: req.params.id });
+        await res.status(200).json({ data: project, message: "recupérer !" });
+    } catch (error) {
+        res.status(405).json({ message: "Erreur lors de Modification" });
+    }
+});
+
+router.get("/project_title/:id", async (req, res) => {
+    try {
+        const project = await Project.findOne({ name: req.params.id });
         await res.status(200).json({ data: project, message: "recupérer !" });
     } catch (error) {
         res.status(405).json({ message: "Erreur lors de Modification" });
