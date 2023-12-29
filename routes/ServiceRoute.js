@@ -13,11 +13,11 @@ router.post('/', async (req, res) => {
 });
 
 // Edit
-router.put('/:id', async (req, res) => {
+router.put('/edit/:id', async (req, res) => {
     try {
-        const service = await Service(req.body)
+        const service = await Service.findByIdAndUpdate({_id:req.params.id},req.body)
         await service.save()
-        await res.status(200).json({ data: service, message: 'Serviceme Update' })
+        await res.status(200).json({ data: service, message: 'Service Update' })
         console.log(service)
     } catch (error) {
         res.status(405).json({ message: error })

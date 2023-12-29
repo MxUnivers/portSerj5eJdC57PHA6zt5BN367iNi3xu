@@ -7,12 +7,12 @@ router.post("/", async (req, res) => {
     try {
         const project = new Project(req.body);
         await project.save();
-        await res.status(200).json({
+        return res.status(200).json({
             data: project,
             message: "Créer avec Succès"
         })
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        return res.status(500).json({ error: error.message })
     }
 });
 
@@ -21,9 +21,9 @@ router.put("/edit/:id", async(req, res) => {
     try {
         const project = await Project.findOneAndUpdate({ _id: req.params.id },req.body);
         await project.save();
-        await res.status(200).json({data:project});
+        return res.status(200).json({data:project});
     } catch (error) {
-        res.status(405).json({ message: "Erreur lors de Modification" });
+        return res.status(405).json({ message: "Erreur lors de Modification" });
     }
 });
 
@@ -31,18 +31,20 @@ router.put("/edit/:id", async(req, res) => {
 router.get("/project/:id", async (req, res) => {
     try {
         const project = await Project.findOne({ _id: req.params.id });
-        await res.status(200).json({ data: project, message: "recupérer !" });
+        return res.status(200).json({ data: project, message: "recupérer !" });
     } catch (error) {
-        res.status(405).json({ message: "Erreur lors de Modification" });
+        return res.status(405).json({ message: "Erreur lors de Modification" });
     }
 });
 
 router.get("/project_title/:id", async (req, res) => {
     try {
-        const project = await Project.findOne({ name: req.params.id });
-        await res.status(200).json({ data: project, message: "recupérer !" });
+        const project = await Project.findOne({ name: String(req.params.id).replaceAll("-"," ") });
+        console.log(project);
+        return res.status(200).json({ data: project, message: "recupérer !" });
     } catch (error) {
-        res.status(405).json({ message: "Erreur lors de Modification" });
+        console.log( "Erreur lors de Modification "+error.message);
+        return res.status(405).json({ message: "Erreur lors de Modification"+error.message });
     }
 });
 
@@ -50,9 +52,9 @@ router.get("/project_title/:id", async (req, res) => {
 router.get("/get/all", async (req, res) => {
     try {
         const project = await Project.find({visible:true});
-        await res.status(200).json({ data: project.reverse() });
+        return res.status(200).json({ data: project.reverse() });
     } catch (error) {
-        res.status(405).json({ message: "Erreur lors de récuperation" });
+        return res.status(405).json({ message: "Erreur lors de récuperation" });
     }
 });
 
@@ -60,9 +62,9 @@ router.get("/get/all", async (req, res) => {
 router.get("/get/all/archives", async (req, res) => {
     try {
         const project = await Project.find({ visible: false });
-        await res.status(200).json({ data: project.reverse(), message: "get all visible" });
+        return res.status(200).json({ data: project.reverse(), message: "get all visible" });
     } catch (error) {
-        res.status(405).json({ message: "Erreur lors de récuperation" });
+        return res.status(405).json({ message: "Erreur lors de récuperation" });
     }
 });
 
@@ -70,33 +72,36 @@ router.get("/get/all/archives", async (req, res) => {
 // AVAILAID
 router.delete("/hide/:id", async (req, res) => {
     try {
-        const project = await Project.findByIdAndUpdate({ _id: req.params.id});
+        const project = await Project.findById({ _id: req.params.id});
         project.visible=false;
         await project.save();
-        res.status(200).json({ message: "Bloqué" });
+        return res.status(200).json({ message: "Bloqué" });
     } catch (error) {
-        res.status(405).json({ message: "Access" })
+        console.log(error.message);
+        return res.status(405).json({ message: "Access" })
     }
 });
 
 // VALID
 router.delete("/show/:id", async (req, res) => {
     try {
-        const project = await Project.findByIdAndUpdate({ _id: req.params.id  });
+        const project = await Project.findById({ _id: req.params.id  });
         project.visible=true;
         await project.save()
-        res.status(200).json({ message: "Deboqué" });
+        return res.status(200).json({ message: "Debloqué" });
     } catch (error) {
-        res.status(405).json({ message: "Error  " });
+        console.log(error.message);
+        return res.status(405).json({ message: "Error  " });
     }
 });
 // DELETE 
 router.get("/delete/:id", async (req, res) => {
     try {
-        const project = await Project.findByIdAndDelete({ _id: req.params.id });
-        res.status(200).json({ data: project, message: "Deboqué" });
+        const project = await Project.findById({ _id: req.params.id });
+        return res.status(200).json({ data: project, message: "Debloqué" });
     } catch (error) {
-        res.status(405).json({ message: "Error  " })
+        console.log(error.message);
+        return res.status(405).json({ message: "Error  " })
     }
 });
 

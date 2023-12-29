@@ -23,15 +23,15 @@ const  CommentSchema =  new mongoose.Schema(
         },
         title:{
             type:String,
-            required:true
+            required:false
         },
         content:{
             type:String,
-            required:true
+            required:false
         },
         visible:{
             type:Boolean,
-            required:true,
+            required:false,
             default:false
         },
         // time:{
